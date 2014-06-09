@@ -6,7 +6,7 @@ Simple way for restricting access to views
 Quick Start
 -----------
 
-1. Add 'locksmith' to installed apps in your settings.py:
+- 1. Add 'locksmith' to installed apps in your settings.py:
 ```python
 INSTALLED_APPS = (
     ...
@@ -20,7 +20,7 @@ and install it:
 ./manage.py syncdb locksmith
 ```
 
-2. Configure your key names in settings.py:
+- 2. Configure your key names in settings.py:
 ```python
 LOCKSMITH_KEYS = (
     'articles',
@@ -28,16 +28,16 @@ LOCKSMITH_KEYS = (
 )
 ```
 
-3. Update your keys (you can do it every time you add a key)
+- 3. Update your keys (you can do it every time you add a key)
 ```bash
 ./manage.py updatekeys
 ```
-4. Update your custom user model, add locksmith mixin:
+- 4. Update your custom user model, add locksmith mixin:
 ```python
 class User(locksmith.models.LocksmithMixin, models.Model):
 ...
 ```
-5. Add key to users keychain (currently no admin interface):
+- 5. Add key to users keychain (currently no admin interface):
 ```python
 from locksmith.models import Keychain, Key
 ...
@@ -49,7 +49,7 @@ user.keychain = keychain
 
 user.keychain.add(Key.objects.get(name='articles')
 ```
-5. Configure your views
+- 5. Configure your views
 ```python
 from locksmith.decorators import key_required
 ...
