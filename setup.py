@@ -8,12 +8,14 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-locksmith',
     version='0.1',
-    packages=['locksmith'],
+    packages=['locksmith',
+              'locksmith.management',
+              'locksmith.management.commands'],
     include_package_data=True,
     license='MIT License',
     description='Simple access control system.',
     long_description=README,
-    url='http://github.com/MichalMazurek/django-locksmith',
+    url='https://github.com/MichalMazurek/django-locksmith',
     author='Michal Mazurek',
     author_email='me@michalmazurek.eu',
     classifiers=[
