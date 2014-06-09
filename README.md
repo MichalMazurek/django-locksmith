@@ -13,6 +13,13 @@ INSTALLED_APPS = (
     'locksmith'
 )
 ```
+
+and install it:
+
+```bash
+./manage.py syncdb locksmith
+```
+
 2. Configure your key names in settings.py:
 ```python
 LOCKSMITH_KEYS = (
