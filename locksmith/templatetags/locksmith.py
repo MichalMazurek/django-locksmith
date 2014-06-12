@@ -11,12 +11,13 @@ def user_has_key(context, key_name, *args, **kwargs):
     request = context['request']
     user = request.user
     """:type: models.LocksmithMixin """
-    if user.keychain is not None:
-        try:
-            return bool(key_name in user.keychain and
-                        not user.keychain.is_expired())
-        except ObjectDoesNotExist:
-            return False
-    else:
-        return False
+    if user.is_authenticated():
+        if user.keychain is not None:
+            try:
+                return bool(key_name in user.keychain and
+                            not user.keychain.is_expired())
+            except ObjectDoesNotExist:
+                return False
+
+    return False
 

@@ -24,7 +24,7 @@ def key_required(key_name: str, redirect_url=None, json_response={}):
                 if not request.user.is_authenticated():
                     raise PermissionDenied
                 keychain = request.user.keychain
-                if (Key.get(name=key_name) in keychain.keys and
+                if (key_name in keychain and
                         not keychain.is_expired()):
                     return view(request, *args, **kwargs)
                 else:
