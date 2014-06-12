@@ -7,10 +7,11 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-locksmith',
-    version='0.1',
+    version='0.1.1',
     packages=['locksmith',
               'locksmith.management',
-              'locksmith.management.commands'],
+              'locksmith.management.commands',
+              'locksmith.templatetags'],
     include_package_data=True,
     license='MIT License',
     description='Simple access control system.',
