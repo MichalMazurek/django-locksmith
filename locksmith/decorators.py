@@ -3,11 +3,11 @@ __author__ = 'michal'
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.http.response import HttpResponseForbidden
-from .models import Key
+from .models import Key, K
 import json
 
 
-def key_required(key_name: str, redirect_url=None, json_response={}):
+def key_required(key_name, redirect_url=None, json_response={}):
     """
     Checks if the logged user as access to this view
     if it has the keychain for it
@@ -20,11 +20,16 @@ def key_required(key_name: str, redirect_url=None, json_response={}):
         nonlocal key_name
 
         def wrapped_view(request, *args, **kwargs):
+            nonlocal key_name
             try:
                 if not request.user.is_authenticated():
                     raise PermissionDenied
                 keychain = request.user.keychain
-                if (key_name in keychain and
+
+                if type(key_name) == str:
+                    key_name = K(key_name)
+
+                if (key_name.check_keychain(keychain) and
                         not keychain.is_expired()):
                     return view(request, *args, **kwargs)
                 else:
