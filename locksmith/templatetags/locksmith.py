@@ -12,6 +12,8 @@ def user_has_key(context, key_name, *args, **kwargs):
     user = request.user
     """:type: models.LocksmithMixin """
     if user.is_authenticated():
+        if user.is_superuser:
+            return True
         if user.keychain is not None:
             try:
                 return bool(key_name in user.keychain and

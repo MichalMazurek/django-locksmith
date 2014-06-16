@@ -24,6 +24,9 @@ def key_required(key_name, redirect_url=None, json_response={}):
             try:
                 if not request.user.is_authenticated():
                     raise PermissionDenied
+
+                if request.user.is_superuser:
+                    return view(request, *args, **kwargs)
                 keychain = request.user.keychain
 
                 if type(key_name) == str:
