@@ -29,6 +29,9 @@ def key_required(key_name, redirect_url=None, json_response={}):
                     return view(request, *args, **kwargs)
                 keychain = request.user.keychain
 
+                if keychain is None:
+                    raise PermissionDenied
+
                 if type(key_name) == str:
                     key_name = K(key_name)
 

@@ -18,6 +18,7 @@ setup(
     long_description=README,
     url='https://github.com/MichalMazurek/django-locksmith',
     author='Michal Mazurek',
+    zip_safe=False,
     author_email='me@michalmazurek.eu',
     classifiers=[
         'Environment :: Web Environment',
