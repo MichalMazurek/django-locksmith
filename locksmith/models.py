@@ -82,7 +82,10 @@ class KeyChain(models.Model):
     keys = models.ManyToManyField(Key, blank=True)
     expiration_date = models.DateField(verbose_name="Expiration date")
 
-    _cache = {}
+
+    def __init__(self, *args, **kwargs):
+        super(KeyChain, self).__init__(*args, **kwargs)
+        self._cache = {}
 
     def is_expired(self):
         return datetime.datetime.now().date() >= self.expiration_date

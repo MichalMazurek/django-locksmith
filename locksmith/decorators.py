@@ -42,8 +42,9 @@ def key_required(key_name, redirect_url=None, json_response={}):
                     return redirect(redirect_url)
             except (Key.DoesNotExist, PermissionDenied):
                 if request.is_ajax() and len(json_response) > 0:
-                    HttpResponseForbidden(content=json.dumps(json_response),
-                                          content_type="application/json")
+                    return HttpResponseForbidden(
+                        content=json.dumps(json_response),
+                        content_type="application/json")
                 elif redirect_url is not None:
                     return redirect(redirect_url)
                 else:
